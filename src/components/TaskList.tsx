@@ -12,8 +12,8 @@ interface Task {
 
 export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [contador, setContador] = useState(0);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [idTemporario, setIdTemporario] = useState(0);
 
   function handleCreateNewTask() {
 
@@ -22,7 +22,7 @@ export function TaskList() {
     }
 
     const task: Task = {
-      id: contador,
+      id: idTemporario,
       title: newTaskTitle,
       isComplete: false,
     }
@@ -30,25 +30,25 @@ export function TaskList() {
 
     setTasks(tasks);
     setNewTaskTitle("");
-    setContador(contador + 1);
+    setIdTemporario(idTemporario + 1);
   }
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
-    const newArray = tasks.map((item) => {
+    const newTasks = tasks.map((item) => {
       if(item.id === id) {
         item.isComplete = !item.isComplete;
       }
       return item;
     });
 
-    setTasks(newArray);
+    setTasks(newTasks);
   }
 
   function handleRemoveTask(id: number) {
-    const newArray = tasks.filter((item) => item.id !== id);
-
-    setTasks(newArray);
+    const newTasks = tasks.filter((item) => item.id !== id);
+    
+    setTasks(newTasks);
   }
 
   return (
